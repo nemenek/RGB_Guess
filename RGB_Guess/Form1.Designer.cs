@@ -50,6 +50,8 @@ namespace RGB_Guess
             this.blueSol = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.earnedPoints = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.highScore = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.RedVal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GreenVal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BlueVal)).BeginInit();
@@ -279,11 +281,33 @@ namespace RGB_Guess
             this.earnedPoints.TabIndex = 20;
             this.earnedPoints.Text = "0/100";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label10.Location = new System.Drawing.Point(642, 223);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(125, 30);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "High Score:";
+            // 
+            // highScore
+            // 
+            this.highScore.AutoSize = true;
+            this.highScore.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.highScore.Location = new System.Drawing.Point(642, 266);
+            this.highScore.Name = "highScore";
+            this.highScore.Size = new System.Drawing.Size(25, 30);
+            this.highScore.TabIndex = 22;
+            this.highScore.Text = "0";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.highScore);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.earnedPoints);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.blueSol);
@@ -307,7 +331,6 @@ namespace RGB_Guess
             this.Controls.Add(this.colorPanel);
             this.Name = "MainForm";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.RedVal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GreenVal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BlueVal)).EndInit();
@@ -339,6 +362,8 @@ namespace RGB_Guess
         private System.Windows.Forms.Label blueSol;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label earnedPoints;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label highScore;
     }
 }
 

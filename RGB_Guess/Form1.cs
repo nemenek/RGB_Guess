@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace RGB_Guess
         private short Green;
         private short Blue;
         private short round;
+        private int HighScore;
 
         public MainForm()
         {
@@ -25,11 +27,9 @@ namespace RGB_Guess
             this.round = 1;
             colorPanel.BackColor = GenerateRandomColor();
             Next.Enabled = false;
-        }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
+            this.HighScore = ReadHighScore();
+            highScore.Text = this.HighScore.ToString();
         }
 
         private Color GenerateRandomColor()
@@ -44,7 +44,7 @@ namespace RGB_Guess
 
         private void submit_Click(object sender, EventArgs e)
         {
-            SubmitBtn.Enabled = false; SubmitBtn.Enabled = false;
+            SubmitBtn.Enabled = false;
 
             int score = Calculate_Score();
             
@@ -60,6 +60,12 @@ namespace RGB_Guess
             {
                 Form2 form = new Form2(int.Parse(Score.Text));
                 form.ShowDialog();
+                if(int.Parse(Score.Text) > this.HighScore)
+                {
+                    this.HighScore = int.Parse(Score.Text);
+                    highScore.Text = this.HighScore.ToString();
+                    SetHighScore(this.HighScore);
+                }
             }
 
             Next.Enabled = true;
@@ -67,6 +73,8 @@ namespace RGB_Guess
 
         private void Next_Click(object sender, EventArgs e)
         {
+            Next.Enabled = false;
+
             if (this.round < 10)
             {
                 this.round++;
@@ -88,6 +96,7 @@ namespace RGB_Guess
             blueSol.Text = 0.ToString();
 
             earnedPoints.Text = 0.ToString() + "/100";
+
 
             SubmitBtn.Enabled = true;
         }
@@ -111,6 +120,29 @@ namespace RGB_Guess
             double normalizedDiff = (double)totalDiff / maxDiff;
 
             return (int)(100 * (1 - normalizedDiff));
+        }
+
+        private int ReadHighScore()
+        {
+            int number = 0;
+            using (StreamReader reader = new StreamReader("highscore.txt"))
+            {
+                string line = reader.ReadLine();
+                if (int.TryParse(line, out number))
+                {
+                    // Number successfully parsed
+                    return number;
+                }
+            }
+            return number;
+        }
+
+        private void SetHighScore(int number)
+        {
+            using (StreamWriter writer = new StreamWriter("highscore.txt"))
+            {
+                writer.WriteLine(number);
+            }
         }
     }
 }
