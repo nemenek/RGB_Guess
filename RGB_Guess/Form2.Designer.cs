@@ -51,7 +51,7 @@ namespace RGB_Guess
             this.finalScore.Name = "finalScore";
             this.finalScore.Size = new System.Drawing.Size(100, 45);
             this.finalScore.TabIndex = 1;
-            this.finalScore.Text = "/1000";
+            this.finalScore.Text = "/1500";
             // 
             // Form2
             // 

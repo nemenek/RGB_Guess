@@ -54,9 +54,9 @@ namespace RGB_Guess
             greenSol.Text = this.Green.ToString();
             blueSol.Text = this.Blue.ToString();
 
-            earnedPoints.Text = score.ToString() + "/100";
+            earnedPoints.Text = score.ToString() + "/300";
 
-            if(this.round == 10)
+            if(this.round == 5)
             {
                 Form2 form = new Form2(int.Parse(Score.Text));
                 form.ShowDialog();
@@ -75,7 +75,7 @@ namespace RGB_Guess
         {
             Next.Enabled = false;
 
-            if (this.round < 10)
+            if (this.round < 5)
             {
                 this.round++;
             }
@@ -85,7 +85,7 @@ namespace RGB_Guess
                 Score.Text = 0.ToString();
             }
             colorPanel.BackColor = GenerateRandomColor();
-            Round.Text = this.round + "/10";
+            Round.Text = this.round + "/5";
 
             BlueVal.Value = 0;
             GreenVal.Value = 0;
@@ -95,7 +95,7 @@ namespace RGB_Guess
             greenSol.Text = 0.ToString();
             blueSol.Text = 0.ToString();
 
-            earnedPoints.Text = 0.ToString() + "/100";
+            earnedPoints.Text = 0.ToString() + "/300";
 
 
             SubmitBtn.Enabled = true;
@@ -103,23 +103,13 @@ namespace RGB_Guess
 
         private int Calculate_Score()
         {
-            int maxDiff_R = this.Red >= 128 ? this.Red : 256 - this.Red;
-            int maxDiff_G = this.Green >= 128 ? this.Green : 256 - this.Green;
-            int maxDiff_B = this.Blue >= 128 ? this.Blue : 256 - this.Blue;
+            int score_R = Math.Max(0, 100 - Math.Abs(((short)RedVal.Value - this.Red)));
 
-            int maxDiff = maxDiff_B + maxDiff_G + maxDiff_R;
+            int score_G = Math.Max(0, 100 - Math.Abs(((short)GreenVal.Value - this.Green)));
 
-            int diff_R = Math.Abs(((short)RedVal.Value - this.Red));
+            int score_B = Math.Max(0, 100 - Math.Abs(((short)BlueVal.Value - this.Blue)));
 
-            int diff_G = Math.Abs(((short)GreenVal.Value - this.Green));
-
-            int diff_B = Math.Abs(((short)BlueVal.Value - this.Blue));
-
-            int totalDiff = diff_B + diff_G + diff_R;
-
-            double normalizedDiff = (double)totalDiff / maxDiff;
-
-            return (int)(100 * (1 - normalizedDiff));
+            return (score_B + score_G + score_R);
         }
 
         private int ReadHighScore()

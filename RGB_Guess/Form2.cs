@@ -15,7 +15,7 @@ namespace RGB_Guess
         public Form2(int score)
         {
             InitializeComponent();
-            finalScore.Text = score.ToString() + "/1000";
+            finalScore.Text = score.ToString() + "/1500";
         }
     }
 }

@@ -156,9 +156,9 @@ namespace RGB_Guess
             this.Round.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Round.Location = new System.Drawing.Point(642, 27);
             this.Round.Name = "Round";
-            this.Round.Size = new System.Drawing.Size(58, 30);
+            this.Round.Size = new System.Drawing.Size(46, 30);
             this.Round.TabIndex = 8;
-            this.Round.Text = "1/10";
+            this.Round.Text = "1/5";
             // 
             // label5
             // 
@@ -279,7 +279,7 @@ namespace RGB_Guess
             this.earnedPoints.Name = "earnedPoints";
             this.earnedPoints.Size = new System.Drawing.Size(52, 21);
             this.earnedPoints.TabIndex = 20;
-            this.earnedPoints.Text = "0/100";
+            this.earnedPoints.Text = "0/300";
             // 
             // label10
             // 
