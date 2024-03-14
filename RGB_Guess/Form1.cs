@@ -115,15 +115,23 @@ namespace RGB_Guess
         private int ReadHighScore()
         {
             int number = 0;
-            using (StreamReader reader = new StreamReader("highscore.txt"))
+            if (File.Exists("highscore.txt"))
             {
-                string line = reader.ReadLine();
-                if (int.TryParse(line, out number))
+                using (StreamReader reader = new StreamReader("highscore.txt"))
                 {
-                    // Number successfully parsed
-                    return number;
+                    string line = reader.ReadLine();
+                    if (int.TryParse(line, out number))
+                    {
+                        // Number successfully parsed
+                        return number;
+                    }
                 }
             }
+            else
+            {
+                File.Create("highscore.txt").Close();
+            }
+                
             return number;
         }
 
