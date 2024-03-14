@@ -108,7 +108,8 @@ namespace RGB_Guess
                     color = Color.Black; // Default color
 
                 // Set the background color and text color
-                e.DrawBackground();
+                e.Graphics.FillRectangle(new SolidBrush(SystemColors.Window), e.Bounds);
+                
                 e.Graphics.DrawString(text, e.Font, new SolidBrush(color), e.Bounds);
 
                 // If the item is selected, draw the focus rectangle
