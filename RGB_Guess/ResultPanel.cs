@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace RGB_Guess
 {
-    public partial class Form2 : Form
+    public partial class ResultPanel : Form
     {
-        public Form2(int score)
+        public ResultPanel(int score)
         {
             InitializeComponent();
             finalScore.Text = score.ToString() + "/1500";

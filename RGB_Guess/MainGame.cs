@@ -25,21 +25,19 @@ namespace RGB_Guess
             InitializeComponent();
 
             this.round = 1;
-            colorPanel.BackColor = GenerateRandomColor();
+            colorPanel.BackColor = ColorGenerator.GenerateColor();
+            setColorValues();
             Next.Enabled = false;
 
             this.HighScore = ReadHighScore();
             highScore.Text = this.HighScore.ToString();
         }
 
-        private Color GenerateRandomColor()
+        private void setColorValues()
         {
-            Random random = new Random();
-            Color color = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
-            this.Red = color.R;
-            this.Green = color.G;
-            this.Blue = color.B;
-            return color;
+            this.Red = colorPanel.BackColor.R;
+            this.Green = colorPanel.BackColor.G;
+            this.Blue = colorPanel.BackColor.B;
         }
 
         private void submit_Click(object sender, EventArgs e)
@@ -58,7 +56,7 @@ namespace RGB_Guess
 
             if(this.round == 5)
             {
-                Form2 form = new Form2(int.Parse(Score.Text));
+                ResultPanel form = new ResultPanel(int.Parse(Score.Text));
                 form.ShowDialog();
                 if(int.Parse(Score.Text) > this.HighScore)
                 {
@@ -84,7 +82,8 @@ namespace RGB_Guess
                 round = 1;
                 Score.Text = 0.ToString();
             }
-            colorPanel.BackColor = GenerateRandomColor();
+            colorPanel.BackColor = ColorGenerator.GenerateColor();
+            setColorValues();
             Round.Text = this.round + "/5";
 
             BlueVal.Value = 0;
@@ -115,9 +114,9 @@ namespace RGB_Guess
         private int ReadHighScore()
         {
             int number = 0;
-            if (File.Exists("highscore.txt"))
+            if (File.Exists("highscoreClassic.txt"))
             {
-                using (StreamReader reader = new StreamReader("highscore.txt"))
+                using (StreamReader reader = new StreamReader("highscoreClassic.txt"))
                 {
                     string line = reader.ReadLine();
                     if (int.TryParse(line, out number))
@@ -129,7 +128,7 @@ namespace RGB_Guess
             }
             else
             {
-                File.Create("highscore.txt").Close();
+                File.Create("highscoreClassic.txt").Close();
             }
                 
             return number;
@@ -137,7 +136,7 @@ namespace RGB_Guess
 
         private void SetHighScore(int number)
         {
-            using (StreamWriter writer = new StreamWriter("highscore.txt"))
+            using (StreamWriter writer = new StreamWriter("highscoreClassic.txt"))
             {
                 writer.WriteLine(number);
             }

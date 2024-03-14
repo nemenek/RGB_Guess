@@ -1,7 +1,7 @@
 ﻿
 namespace RGB_Guess
 {
-    partial class Form2
+    partial class ResultPanel
     {
         /// <summary>
         /// Required designer variable.
